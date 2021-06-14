@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello from CLIENT homepage~!</h1>
+<header th:insert="~{common/header :: header}"></header>
+
+<table>
+    <tr>
+        <th>Master</th>
+        <th>Service</th>
+        <th>Description</th>
+        <th>Rate</th>
+        <th>Reservation</th>
+    </tr>
+    <tr th:each="item : ${table}">
+        <form action="/homepage/timeslots" method="post">
+            <td th:text="${item.login}"></td>
+            <td th:text="${item.service.name}"></td>
+            <td th:text="${item.service.description}"></td>
+            <td th:text="${item.rate}"></td>
+            <td>
+                <button type="submit">Make reservation</button>
+                <input type="hidden" name="masterName" value="masterName" th:attr="value=${item.login}"/>
+            </td>
+            <td><input type="date" name="date" required/></td>
+        </form>
+    </tr>
+</table>
+
+<form action="/auth/logout" method="post">
+    <button type="submit">Log out</button>
+</form>
+<footer th:insert="~{common/footer :: footer}"></footer>
+</body>
+</html>

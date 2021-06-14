@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Page</title>
+    <style th:insert="~{common/tablestyle :: style}"/>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"/>
+
+<table>
+    <tr>
+        <th>Master</th>
+        <th>Service</th>
+        <th>Description</th>
+        <th>Rate</th>
+    </tr>
+    <tr th:each="item : ${catalog}">
+        <td th:text="${item.login}"></td>
+        <td th:text="${item.service.name}"></td>
+        <td th:text="${item.service.description}"></td>
+        <td th:text="${item.rate}"></td>
+    </tr>
+</table>
+
+<footer th:insert="~{common/footer :: footer}"/>
+</body>
+</html>

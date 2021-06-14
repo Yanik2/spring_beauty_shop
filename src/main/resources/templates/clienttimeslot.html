@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"/>
+
+<h2>Master:<span th:text="${masterName}"/></h2>
+<h2>Date:<span th:text="${date}"/></h2>
+<h2>Choose time:</h2>
+
+
+<table>
+    <tr th:each="item : ${timeslots}">
+        <form action="/homepage/makeAppointment" method="post">
+            <td th:text="${item.time}"></td>
+            <td>
+                <button type="submit">Book</button>
+                <input type="hidden" name="timeslotId" value="timeslot" th:attr="value=${item.id}"/>
+                <input type="hidden" name="date" value="date" th:attr="value=${date}"/>
+                <input type="hidden" name="masterName" value="masterName" th:attr="value=${masterName}"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<footer th:insert="~{common/footer :: footer}"/>
+</body>
+</html>

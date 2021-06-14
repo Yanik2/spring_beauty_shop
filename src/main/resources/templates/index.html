@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"></header>
+
+<div style="display: flex; justify-content: space-between; margin: 0 20px;">
+    <div>
+        <h2>Service Catalog</h2>
+        <form action="/serviceCatalog" method="get">
+            <label>Sort by: Name<input name="sortMethod" value="sortByName" type="radio" checked/></label>
+            <label>Rate:<input name="sortMethod" value="sortByRate" type="radio"/></label>
+            <br>
+
+            <p>Filter by: <br>
+                <label>Master <input type="radio" name="filterMethod" value="filterByMaster"/></label>
+                <br>
+                <label>Service <input type="radio" name="filterMethod" value="filterByService"/></label></p>
+            <label>Filter Parameter: <input type="text" name="filter"/></label>
+            <button name="submit" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<a href="/auth/login">Login page</a>
+<footer th:insert="~{common/footer :: footer}"/>
+</body>
+</html>

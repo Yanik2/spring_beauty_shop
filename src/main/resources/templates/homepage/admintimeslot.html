@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"/>
+
+<table>
+    <tr th:each="item : ${timeslots}">
+        <form th:unless="${item.booked}" action="/homepage/changeTime" method="post">
+            <td th:text="${item.timeslot.time}"></td>
+            <td>
+                <button type="submit">Choose</button>
+                <input type="hidden" name="newTimeslot" value="newTimeslot" th:attr="value=${item.timeslot.id}"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<footer th:insert="~{common/footer :: footer}"/>
+</body>
+</html>

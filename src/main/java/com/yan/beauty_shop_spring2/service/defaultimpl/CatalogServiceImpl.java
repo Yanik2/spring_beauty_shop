@@ -6,7 +6,6 @@ import com.yan.beauty_shop_spring2.entity.Account;
 import com.yan.beauty_shop_spring2.entity.Role;
 import com.yan.beauty_shop_spring2.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

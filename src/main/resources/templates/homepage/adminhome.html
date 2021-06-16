@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"/>
+
+<table>
+    <tr>
+        <th>Master</th>
+        <th>Client</th>
+        <th>Service</th>
+        <th>Time</th>
+        <th>Date</th>
+        <th>Change Time</th>
+        <th>Cancel</th>
+        <th>Confirm Payment</th>
+    </tr>
+    <tr th:each="item : ${table}">
+        <td th:text="${item.appointmentId.master.login}"></td>
+        <td th:text="${item.appointmentId.client.login}"></td>
+        <td th:text="${item.appointmentId.service.name}"></td>
+        <td th:text="${item.appointmentId.timeslot.time}"></td>
+        <td th:text="${item.appointmentId.date}"></td>
+        <form action="/homepage/masterTimeslots" method="post">
+            <td><button type="submit">Change time</button></td>
+            <input type="hidden" name="masterId" value="appId" th:attr="value=${item.appointmentId.master.id}"/>
+            <input type="hidden" name="clientId" value="appId" th:attr="value=${item.appointmentId.client.id}"/>
+            <input type="hidden" name="serviceId" value="appId" th:attr="value=${item.appointmentId.service.id}"/>
+            <input type="hidden" name="timeslotId" value="appId" th:attr="value=${item.appointmentId.timeslot.id}"/>
+            <input type="hidden" name="date" value="appId" th:attr="value=${item.appointmentId.date}"/>
+        </form>
+        <form action="/homepage/cancelAppointment" method="post">
+            <td><button type="submit">Cancel</button></td>
+            <input type="hidden" name="masterId" value="appId" th:attr="value=${item.appointmentId.master.id}"/>
+            <input type="hidden" name="clientId" value="appId" th:attr="value=${item.appointmentId.client.id}"/>
+            <input type="hidden" name="serviceId" value="appId" th:attr="value=${item.appointmentId.service.id}"/>
+            <input type="hidden" name="timeslotId" value="appId" th:attr="value=${item.appointmentId.timeslot.id}"/>
+            <input type="hidden" name="date" value="appId" th:attr="value=${item.appointmentId.date}"/>
+        </form>
+        <form action="/homepage/confirmPayment" method="post">
+            <td th:if="${item.paid}">Paid</td>
+            <td th:unless="${item.paid}"><button type="submit">Confirm Payment</button></td>
+            <input type="hidden" name="masterId" value="appId" th:attr="value=${item.appointmentId.master.id}"/>
+            <input type="hidden" name="clientId" value="appId" th:attr="value=${item.appointmentId.client.id}"/>
+            <input type="hidden" name="serviceId" value="appId" th:attr="value=${item.appointmentId.service.id}"/>
+            <input type="hidden" name="timeslotId" value="appId" th:attr="value=${item.appointmentId.timeslot.id}"/>
+            <input type="hidden" name="date" value="appId" th:attr="value=${item.appointmentId.date}"/>
+        </form>
+    </tr>
+</table>
+
+<footer th:insert="~{common/footer :: footer}"/>
+</body>
+</html>

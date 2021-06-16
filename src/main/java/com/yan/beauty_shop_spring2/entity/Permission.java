@@ -5,7 +5,7 @@ public enum Permission {
     CLIENT("client"),
     ADMIN("admin");
 
-    private String permission;
+    private final String permission;
 
     Permission(String permission) {
         this.permission = permission;

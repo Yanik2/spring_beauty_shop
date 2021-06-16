@@ -10,7 +10,7 @@ public enum Role {
     CLIENT(Set.of(Permission.CLIENT)),
     MASTER(Set.of(Permission.MASTER));
 
-    private Set<Permission> permissions;
+    private final Set<Permission> permissions;
 
     Role(Set<Permission> permissions) {
         this.permissions = permissions;

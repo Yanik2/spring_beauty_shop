@@ -5,6 +5,7 @@ import com.yan.beauty_shop_spring2.dao.TimeslotRepo;
 import com.yan.beauty_shop_spring2.entity.Account;
 import com.yan.beauty_shop_spring2.entity.Appointment;
 import com.yan.beauty_shop_spring2.entity.Timeslot;
+import com.yan.beauty_shop_spring2.service.StaticMethods;
 import com.yan.beauty_shop_spring2.service.TimeslotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class TimeslotServiceImpl implements TimeslotService {
     public Map<String, Object> getTimeslots(String masterName, String date) {
         Optional<Account> masterOpt = accountRepo.findByLogin(masterName);
         List<Timeslot> timeslots = timeslotRepo.findAll();
-        List<Appointment> appointments = filterAppointmentsByDate(masterOpt.get().getMasterAppointments(), date);
+        List<Appointment> appointments = StaticMethods.filterAppointmentsByDate(masterOpt.get().getMasterAppointments(), date);
         List<Timeslot> filteredTimeslot = filterTimeslots(appointments, timeslots);
         Map<String, Object> map = new HashMap<>();
         map.put(TIMESLOTS, filteredTimeslot);
@@ -37,17 +38,12 @@ public class TimeslotServiceImpl implements TimeslotService {
         return map;
     }
 
-    private List<Appointment> filterAppointmentsByDate(List<Appointment> apps, String date) {
-        apps = apps.stream().filter(app -> app.getDate().equals(date)).collect(Collectors.toList());
-        return apps;
-    }
-
     private List<Timeslot> filterTimeslots(List<Appointment> apps, List<Timeslot> timeslots) {
         for(Appointment a : apps) {
-            timeslots = timeslots.stream().filter(timeslot -> !timeslot.getId().equals(a.getTimeslotId()))
-            .collect(Collectors.toList());
+            timeslots = timeslots.stream()
+                    .filter(timeslot -> !timeslot.getId().equals(a.getAppointmentId().getTimeslot().getId()))
+                    .collect(Collectors.toList());
         }
-        System.out.println(timeslots);
         return timeslots;
     }
 }

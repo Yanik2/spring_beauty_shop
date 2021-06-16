@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+<header th:insert="~{common/header :: header}"></header>
+<div style="display: flex; justify-content: space-between; margin: 0 20px;">
+    <div>
+        <table>
+            <tr th:each="item : ${table}">
+                <form action="/homepage/markAsDone" method="post">
+                    <td th:text="${item.timeslot.time}"></td>
+                    <td th:if="${item.done}">Done</td>
+                    <td th:unless="${item.done}">
+                        <span th:if="${item.booked}"><button type="submit">Mark As Done</button></span>
+                        <span th:unless="${item.booked}">Not booked</span>
+                    </td>
+                    <td th:text="${item.booked} ? 'Booked' : 'Not booked'"></td>
+                    <input type="hidden" name="timeslotId" value="timeslotId" th:attr="value=${item.timeslot.id}"/>
+                </form>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <form action="/auth/logout" method="post">
+            <button type="submit">Log out</button>
+        </form>
+    </div>
+</div>
+<footer th:insert="~{common/footer :: footer}"></footer>
+</body>
+</html>

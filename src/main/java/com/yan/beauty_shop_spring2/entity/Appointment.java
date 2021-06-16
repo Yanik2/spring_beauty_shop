@@ -1,24 +1,19 @@
 package com.yan.beauty_shop_spring2.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "appointment")
 @Data
-@IdClass(AppointmentId.class)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Appointment {
-    @Id
-    private Integer masterId;
-    @Id
-    private Integer clientId;
-    @Id
-    private Integer serviceId;
-    @Id
-    private Integer timeslotId;
-    @Id
-    private String date;
+    @EmbeddedId
+    private AppointmentId appointmentId;
     @Column(name = "paid")
     private Boolean paid;
     @Column(name = "done")

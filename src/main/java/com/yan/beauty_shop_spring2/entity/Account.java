@@ -30,7 +30,7 @@ public class Account {
     @JoinColumn(name = "service_id")
     private Service service;
 
-    @OneToMany(mappedBy = "masterId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "appointmentId.master", fetch = FetchType.EAGER)
     private List<Appointment> masterAppointments = new ArrayList<>();
 
     public Account() {

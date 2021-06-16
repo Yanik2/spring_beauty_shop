@@ -7,13 +7,14 @@ public class Constants {
     public static final String SERVICE_JSP = "/service.jsp";
     public static final String SERVICE_NOT_FOUND_JSP = "/errors/servicenotfound.jsp";
     public static final String ACCESS_FAILED_JSP = "/errors/accessfailed.jsp";
-    public static final String CLIENT_TIMESLOT_JSP = "clienttimeslot.jsp";
+    public static final String CLIENT_TIMESLOT = "clienttimeslot";
     public static final String CLIENT_HOME = "clienthome.jsp";
     public static final String MASTER_HOME = "masterhome.jsp";
     public static final String ADMIN_HOME = "adminhome.jsp";
-    public static final String ADMIN_CHANGE_TIME = "adminchangetime.jsp";
+    public static final String ADMIN_TIMESLOT = "admintimeslot";
     public static final String CLIENT_FEEDBACK_JSP = "clientfeedback.jsp";
     public static final String FEEDBACK_JSP = "/feedback.jsp";
+    public static final String REDIRECT_HOMEPAGE = "redirect:/homepage/";
 
     public static final String ID = "id";
     public static final String RATE = "rate";
@@ -46,6 +47,7 @@ public class Constants {
     public static final String USER = "user";
     public static final String MASTER = "master";
     public static final String FEEDBACKS = "feedbacks";
+    public static final String TABLE = "table";
 
     public static final String MASTERID = "masterId";
     public static final String CLIENTID = "clientId";
